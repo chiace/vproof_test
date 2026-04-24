@@ -1,46 +1,88 @@
-# VisaProof — Superteam Australia Ideathon Site
+# VisaProof — Landing Page (Ideathon Prototype)
 
-A one-page React + Vite + Tailwind landing page for the VisaProof concept.
+**VisaProof** is a concept prototype for a Solana-powered verification layer that helps people **reuse document trust** across immigration, hiring, and education—without putting sensitive files on-chain.
 
-## Concept
+> **Prepare once. Verify once. Reuse trust.**
 
-VisaProof is a Solana-based verification layer for faster immigration document trust.
+## Live demo
 
-It helps applicants, migration agents, employers and institutions verify key immigration documents faster, while keeping sensitive files private and off-chain.
+- **Vercel**: *(add your deployed URL here)*
 
-**Prepare once. Verify once. Reuse trust.**
+## What’s in this repo
 
-## Open in Cursor
+A polished, one-page landing site with an interactive “prototype” section:
 
-1. Unzip this folder.
-2. Open the `visaproof-site` folder in Cursor.
-3. In the terminal, run:
+- **Interactive demo**: tabs, modal preview, proof copy-to-clipboard, micro-interactions  
+- **High-end UI**: Tailwind “glass” styling, motion/reveal animations, subtle 3D tilt + glare
+- **Fast build**: Vite + React + TypeScript
+
+## Tech stack
+
+- **React** + **TypeScript**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+- **Lucide Icons**
+
+## Getting started (local)
+
+### Requirements
+
+- Node.js 18+ (recommended)
+
+### Install & run
 
 ```bash
 npm install
 npm run dev
 ```
 
-4. Open the local URL shown in the terminal, usually:
+Then open:
 
-```bash
-http://localhost:5173
-```
+- `http://localhost:5173`
 
-## Build for production
+## Build
 
 ```bash
 npm run build
+npm run preview
 ```
 
-The production files will be generated in the `dist` folder.
+The production build outputs to `dist/`.
 
-## Suggested deployment
+## Deploy
 
-The fastest options are:
+### Vercel (recommended)
 
-- Vercel
-- Netlify
-- GitHub Pages with Vite configuration
+1. Import the GitHub repository on Vercel
+2. Framework preset: **Vite**
+3. Build command: `npm run build`
+4. Output directory: `dist`
 
-For the Superteam submission, deploy the site and paste the public URL into “Link to Your Submission”.
+### Netlify
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+
+### GitHub Pages
+
+Use a Vite Pages workflow that deploys the `dist/` output.
+
+## Project structure
+
+```text
+src/
+  VisaProofLanding.tsx   # Main one-page landing component
+  main.tsx               # React entry
+  index.css              # Tailwind + global styles
+  assets/                # SVG visuals used in the UI
+```
+
+## Notes
+
+- This is a **concept prototype** (not a production verification system).
+- The UI messaging explicitly avoids token/speculation framing.
+
+## License
+
+MIT (or replace with your preferred license).
