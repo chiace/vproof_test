@@ -802,7 +802,7 @@ export default function VisaProofLanding() {
                       <ArrowRight className="w-4 h-4" />
                     </a>
                     <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-slate-300">
-                      Concept by Chiara Cerretti · Superteam Australia
+                      Concept by Chiara Cerretti × Superteam Australia
                     </div>
                   </div>
                 </div>
