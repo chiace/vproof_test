@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
@@ -197,14 +197,16 @@ function TiltCard({
   children,
   className = "",
   intensity = 10,
+  glare = false,
 }: {
   children: ReactNode;
   className?: string;
   intensity?: number;
+  glare?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
   const rx = useSpring(useMotionValue(0), { stiffness: 180, damping: 18, mass: 0.6 });
   const ry = useSpring(useMotionValue(0), { stiffness: 180, damping: 18, mass: 0.6 });
 
@@ -225,6 +227,10 @@ function TiltCard({
 
   const transform = useMotionTemplate`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0px)`;
 
+  const glareX = useTransform(mx, (v) => `${Math.round(v * 100)}%`);
+  const glareY = useTransform(my, (v) => `${Math.round(v * 100)}%`);
+  const glareBackground = useMotionTemplate`radial-gradient(520px circle at ${glareX} ${glareY}, rgba(255,255,255,0.20), rgba(255,255,255,0.08) 22%, rgba(255,255,255,0.0) 55%)`;
+
   return (
     <motion.div
       ref={ref}
@@ -244,7 +250,19 @@ function TiltCard({
       }}
       className={className}
     >
-      {children}
+      <div className="relative">
+        {children}
+        {glare ? (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 rounded-[28px] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+            style={{
+              backgroundImage: glareBackground,
+              mixBlendMode: "screen",
+            }}
+          />
+        ) : null}
+      </div>
     </motion.div>
   );
 }
@@ -512,7 +530,7 @@ export default function VisaProofLanding() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <TiltCard intensity={12}>
+              <TiltCard intensity={12} glare className="group">
                 <GlowCard className="p-6 md:p-7 overflow-hidden">
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
